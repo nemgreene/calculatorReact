@@ -59,6 +59,7 @@ function App() {
       toggle
         ? cStore({ ...store, v2: x, f: y ? y : store.f })
         : cStore({ ...store, v1: x, f: y ? y : store.f });
+      return toggle ? store.v2 : store.v1;
     };
 
     if (value === ".") {
@@ -100,6 +101,7 @@ function App() {
           //DEL
           case "DEL":
             //overwrite context specific state value
+            console.log(loop, toggle, store);
             if (loop) {
               cStore({
                 ...store,
@@ -107,7 +109,8 @@ function App() {
               });
               return;
             }
-            writeFunc(
+
+            let pr = writeFunc(
               //if there is NOT a function
               !toggle || loop
                 ? //either remove last or set to zero on v1
@@ -119,6 +122,8 @@ function App() {
                 ? store.v2.slice(0, -1)
                 : 0
             );
+            cPrint(pr > 0 ? pr.slice(0, -1) : 0);
+
             break;
 
           //memory functions
