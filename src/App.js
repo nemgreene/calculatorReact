@@ -101,7 +101,6 @@ function App() {
           //DEL
           case "DEL":
             //overwrite context specific state value
-            console.log(loop, toggle, store);
             if (loop) {
               cStore({
                 ...store,
